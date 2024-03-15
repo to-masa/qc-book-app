@@ -29,7 +29,7 @@ class RestExceptionHandler {
         exception: EntityNotFoundException,
     ): ResponseEntity<ErrorResponseBody> {
         val httpStatus: HttpStatus = HttpStatus.NOT_FOUND
-        val body: ErrorResponseBody = ErrorResponseBody(
+        val body = ErrorResponseBody(
             error = ErrorInfo(
                 code = HttpStatus.NOT_FOUND.value(),
                 message = exception.message ?: "値が見つかりませんでした",
@@ -43,7 +43,7 @@ class RestExceptionHandler {
         exception: Exception,
     ): ResponseEntity<ErrorResponseBody> {
         val httpStatus: HttpStatus = HttpStatus.BAD_REQUEST
-        val body: ErrorResponseBody = ErrorResponseBody(
+        val body = ErrorResponseBody(
             error = ErrorInfo(
                 code = HttpStatus.BAD_REQUEST.value(),
                 message = exception.message ?: "エラーが発生しました",
@@ -58,9 +58,11 @@ class RestExceptionHandler {
     private fun handleThrowable(
         exception: Throwable,
     ): ResponseEntity<ErrorResponseBody> {
+        // FIXME: エラー通知などを実装する際に、引数の exception のメッセージを参照する
+        println(exception.message)
 
         val httpStatus: HttpStatus = HttpStatus.INTERNAL_SERVER_ERROR
-        val body: ErrorResponseBody = ErrorResponseBody(
+        val body = ErrorResponseBody(
             error = ErrorInfo(
                 code = HttpStatus.INTERNAL_SERVER_ERROR.value(),
                 message = "サーバーでエラーが発生しました",
