@@ -1,5 +1,7 @@
 package com.qcbookapp.domain.model.author
 
+import com.qcbookapp.domain.service.TextLengthValidator
+
 /**
  * 著者名
  * - 値オブジェクト
@@ -8,13 +10,15 @@ data class AuthorName(
     val value: String
 ) {
     init {
-        if(value.length > MAX_LENGTH) {
-            throw IllegalArgumentException("${LABEL}は${MAX_LENGTH}文字以下でなければなりません")
-        }
+        TextLengthValidator.execute(
+            value = value,
+            minLength = 1,
+            maxLength = 100,
+            label = LABEL
+        )
     }
     
     companion object {
-        private const val MAX_LENGTH: Int = 100
         private const val LABEL: String = "著者名"
     }
 }
