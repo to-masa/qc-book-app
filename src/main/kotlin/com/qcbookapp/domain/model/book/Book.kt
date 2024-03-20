@@ -33,4 +33,30 @@ class Book private constructor(
             )
         }
     }
+
+    /**
+     * 書籍を更新する
+     */
+    fun update(title: BookTitle, authorId: Long): Book {
+        return privateUpdate(
+            title = title,
+            authorId = authorId
+        )
+    }
+
+    /**
+     * 書籍を更新する
+     * - ファクトリーメソッド
+     */
+    private fun privateUpdate(title: BookTitle, authorId: Long): Book {
+        // 省略可能だが、更新前の状態で更新することを明示的に示すためにbeforeを使っている
+        val before: Book = this
+        return Book(
+            identifier = before.identifier,
+            title = title,
+            authorId = authorId,
+            createdAt = before.createdAt,
+            updatedAt = UpdatedAt.of()
+        )
+    }
 }
