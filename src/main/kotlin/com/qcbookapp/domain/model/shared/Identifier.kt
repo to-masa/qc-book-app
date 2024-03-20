@@ -1,3 +1,6 @@
 package com.qcbookapp.domain.model.shared
 
-open class Identifier(val value: Long?)
+/**
+ * 識別子(IDオブジェクト)
+ */
+open class Identifier(val value: Long)

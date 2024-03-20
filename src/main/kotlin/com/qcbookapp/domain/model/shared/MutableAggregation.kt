@@ -1,4 +1,6 @@
 package com.qcbookapp.domain.model.shared
 
-interface MutableAggregation<T>: MutableEntity<T> {
-}
+/**
+ * 更新可能な集約ルート
+ */
+interface MutableAggregation<T>: MutableEntity<T>
