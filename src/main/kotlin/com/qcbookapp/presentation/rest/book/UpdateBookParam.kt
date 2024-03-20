@@ -1,5 +1,6 @@
 package com.qcbookapp.presentation.rest.book
 
+import com.qcbookapp.domain.model.author.AuthorId
 import com.qcbookapp.domain.model.book.BookTitle
 
 /**
@@ -7,6 +8,5 @@ import com.qcbookapp.domain.model.book.BookTitle
  */
 data class UpdateBookParam(
     val title: BookTitle,
-    // TODO: AuthorIdのIDオブジェクトに変更する
-    val authorId: Long
+    val authorId: AuthorId
 )
