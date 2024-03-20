@@ -24,7 +24,7 @@ data class AuthorKana(
     }
 
     companion object {
-        private val FORMAT_REGEX: Regex = Regex("^[ぁ-んー]*$")
+        private val FORMAT_REGEX: Regex = Regex("^[ぁ-んー 　]*$")
         private const val LABEL: String = "著者名(かな)"
     }
 }
