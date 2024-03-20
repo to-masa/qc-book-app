@@ -6,6 +6,7 @@ import com.qcbookapp.domain.model.shared.UpdatedAt
 import io.kotest.assertions.assertSoftly
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
+import io.kotest.matchers.date.shouldBeAfter
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeTypeOf
@@ -21,23 +22,23 @@ class AuthorTest : BehaviorSpec({
                     name = AuthorName(name),
                     kana = AuthorKana(kana)
                 )
-                Then("著者IDが設定されていること") {
+                Then("著者IDが作成されること") {
                     created.identifier.shouldNotBeNull()
                     created.identifier.value.shouldBeTypeOf<Long>()
                 }
-                Then("指定した著者名が設定されていること") {
+                Then("著者名が指定した値で作成されること") {
                     created.name.value.shouldBe(name)
                 }
-                Then("指定した著者名(かな)が設定されていること") {
+                Then("著者名(かな)が指定した値で作成されること") {
                     created.kana.value.shouldBe(kana)
                 }
-                Then("作成日時が設定されていること") {
+                Then("作成日時が作成されること") {
                     assertSoftly(created.createdAt) {
                         shouldNotBeNull()
                         value.shouldBeTypeOf<LocalDateTime>()
                     }
                 }
-                Then("更新日時が設定されていること") {
+                Then("更新日時が作成されること") {
                     assertSoftly(created.updatedAt) {
                         shouldNotBeNull()
                         value.shouldBeTypeOf<LocalDateTime>()
@@ -146,27 +147,21 @@ class AuthorTest : BehaviorSpec({
                     name = AuthorName(updatedName),
                     kana = AuthorKana(updatedKana)
                 )
-                Then("著者IDが設定されていること") {
+                Then("著者IDが更新されないこと") {
                     updated.identifier.shouldNotBeNull()
                     updated.identifier.value.shouldBeTypeOf<Long>()
                 }
-                Then("指定した著者名が設定されていること") {
+                Then("指定した著者名が指定した値で更新されること") {
                     updated.name.value.shouldBe(updatedName)
                 }
-                Then("指定した著者名(かな)が設定されていること") {
+                Then("指定した著者名(かな)が指定した値で更新されること") {
                     updated.kana.value.shouldBe(updatedKana)
                 }
-                Then("作成日時が設定されていること") {
-                    assertSoftly(updated.createdAt) {
-                        shouldNotBeNull()
-                        value.shouldBeTypeOf<LocalDateTime>()
-                    }
+                Then("作成日時が更新されないこと") {
+                    updated.createdAt.shouldBe(before.createdAt)
                 }
-                Then("更新日時が設定されていること") {
-                    assertSoftly(updated.updatedAt) {
-                        shouldNotBeNull()
-                        value.shouldBeTypeOf<LocalDateTime>()
-                    }
+                Then("更新日時が更新されること") {
+                    updated.updatedAt.value.shouldBeAfter(before.createdAt.value)
                 }
             }
         }
@@ -268,19 +263,19 @@ class AuthorTest : BehaviorSpec({
                     createdAt = createdAt,
                     updatedAt = updatedAt
                 )
-                Then("指定した著者IDで再構築されていること") {
+                Then("著者IDが指定した値で再構築されること") {
                     reconstructed.identifier.shouldBe(id)
                 }
-                Then("指定した著者名で再構築されていること") {
+                Then("著者名が指定した値で再構築されること") {
                     reconstructed.name.value.shouldBe(name)
                 }
-                Then("指定した著者名(かな)で再構築されていること") {
+                Then("著者名(かな)が指定した値で再構築されること") {
                     reconstructed.kana.value.shouldBe(kana)
                 }
-                Then("指定した作成日時が設定されていること") {
+                Then("作成日時が指定した値で再構築されること") {
                     reconstructed.createdAt.shouldBe(createdAt)
                 }
-                Then("指定した更新日時が設定されていること") {
+                Then("更新日時が指定した値で再構築されること") {
                     reconstructed.updatedAt.shouldBe(updatedAt)
                 }
             }
