@@ -1,5 +1,6 @@
 package com.qcbookapp.domain.model.book
 
+import com.qcbookapp.domain.model.author.AuthorId
 import com.qcbookapp.domain.model.shared.CreatedAt
 import com.qcbookapp.domain.model.shared.MutableAggregation
 import com.qcbookapp.domain.model.shared.UpdatedAt
@@ -7,14 +8,14 @@ import com.qcbookapp.domain.model.shared.UpdatedAt
 class Book private constructor(
     override val identifier: BookId,
     val title: BookTitle,
-    val authorId: Long,
+    val authorId: AuthorId,
     override val createdAt: CreatedAt,
     override val updatedAt: UpdatedAt,
 ): MutableAggregation<Book> {
 
     companion object {
 
-        fun create(title: BookTitle, authorId: Long): Book {
+        fun create(title: BookTitle, authorId: AuthorId): Book {
             return Book(
                 identifier = BookId(),
                 title = title,
@@ -23,7 +24,7 @@ class Book private constructor(
                 updatedAt = UpdatedAt.of()
             )
         }
-        fun reconstruct(id: BookId, title: BookTitle, authorId: Long, createdAt: CreatedAt, updatedAt: UpdatedAt): Book {
+        fun reconstruct(id: BookId, title: BookTitle, authorId: AuthorId, createdAt: CreatedAt, updatedAt: UpdatedAt): Book {
             return Book(
                 identifier = id,
                 title = title,
@@ -37,7 +38,7 @@ class Book private constructor(
     /**
      * 書籍を更新する
      */
-    fun update(title: BookTitle, authorId: Long): Book {
+    fun update(title: BookTitle, authorId: AuthorId): Book {
         return privateUpdate(
             title = title,
             authorId = authorId
@@ -48,7 +49,7 @@ class Book private constructor(
      * 書籍を更新する
      * - ファクトリーメソッド
      */
-    private fun privateUpdate(title: BookTitle, authorId: Long): Book {
+    private fun privateUpdate(title: BookTitle, authorId: AuthorId): Book {
         // 省略可能だが、更新前の状態で更新することを明示的に示すためにbeforeを使っている
         val before: Book = this
         return Book(
