@@ -5,6 +5,10 @@ import com.qcbookapp.domain.model.shared.CreatedAt
 import com.qcbookapp.domain.model.shared.MutableAggregation
 import com.qcbookapp.domain.model.shared.UpdatedAt
 
+/**
+ * 書籍
+ * - 集約ルート
+ */
 class Book private constructor(
     override val identifier: BookId,
     val title: BookTitle,
@@ -15,6 +19,9 @@ class Book private constructor(
 
     companion object {
 
+        /**
+         * 書籍を作成する
+         */
         fun create(title: BookTitle, authorId: AuthorId): Book {
             return Book(
                 identifier = BookId(),
@@ -24,6 +31,10 @@ class Book private constructor(
                 updatedAt = UpdatedAt.of()
             )
         }
+
+        /**
+         * 書籍を再構築する
+         */
         fun reconstruct(id: BookId, title: BookTitle, authorId: AuthorId, createdAt: CreatedAt, updatedAt: UpdatedAt): Book {
             return Book(
                 identifier = id,
