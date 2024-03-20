@@ -14,9 +14,9 @@ class Book private constructor(
 
     companion object {
 
-        fun create(id: BookId, title: BookTitle, authorId: Long): Book {
+        fun create(title: BookTitle, authorId: Long): Book {
             return Book(
-                identifier = id,
+                identifier = BookId(),
                 title = title,
                 authorId = authorId,
                 createdAt = CreatedAt.of(),
