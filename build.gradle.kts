@@ -103,3 +103,9 @@ jooq {
         }
     }
 }
+
+// jooqのタスクをflywayのタスクに依存させる
+// - これにより、マイグレーション後にjooqのコード生成が実行される
+tasks.named("generateJooq") {
+    dependsOn("flywayMigrate")
+}
