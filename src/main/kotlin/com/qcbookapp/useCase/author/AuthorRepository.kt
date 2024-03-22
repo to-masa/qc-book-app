@@ -9,7 +9,7 @@ import com.qcbookapp.domain.model.author.AuthorId
 interface AuthorRepository {
     fun findAll(): List<Author>
 
-    fun findById(id: AuthorId): Author?
+    fun fetchById(id: AuthorId): Author?
 
     fun insert(author: Author)
 
