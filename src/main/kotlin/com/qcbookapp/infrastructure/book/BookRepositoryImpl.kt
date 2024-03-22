@@ -6,6 +6,7 @@ import com.qcbookapp.domain.model.book.BookId
 import com.qcbookapp.domain.model.book.BookTitle
 import com.qcbookapp.domain.model.shared.CreatedAt
 import com.qcbookapp.domain.model.shared.UpdatedAt
+import com.qcbookapp.infrastructure.jooq.tables.records.BookRecord
 import com.qcbookapp.useCase.book.BookRepository
 import org.springframework.stereotype.Repository
 
@@ -19,25 +20,10 @@ class BookRepositoryImpl(
 ) : BookRepository() {
 
     /**
-     * 取得したデータをドメインオブジェクトにマッピングする
-     */
-    private val rootMapper: (BookDao.BookRow) -> Book = { result ->
-        result.run {
-            Book.reconstruct(
-                id = BookId(id),
-                title = BookTitle(title),
-                authorId = AuthorId(authorId),
-                createdAt = CreatedAt(createdAt),
-                updatedAt = UpdatedAt(updatedAt),
-            )
-        }
-    }
-
-    /**
      * 全ての書籍を取得する
      */
     override fun findAll(): List<Book> {
-        return bookDao.findAll().map(rootMapper)
+        return bookDao.findAll().map { bookRecord -> bookMapper(bookRecord) }
     }
 
     /**
@@ -51,17 +37,50 @@ class BookRepositoryImpl(
      * 書籍を作成する
      */
     override fun insert(book: Book) {
-        bookDao.insert(
-            book = book
-        )
+        privateSave(book)
     }
 
     /**
      * 書籍を更新する
      */
     override fun update(book: Book) {
-        bookDao.update(
-            book = book
+        privateSave(book)
+    }
+
+    /**
+     * 書籍を保存する
+     *  - 作成の場合は新規レコードを作成する
+     *  - 更新の場合は既存レコードを更新する
+     */
+    private fun privateSave(book: Book) {
+        val record: BookRecord = bookDao.fetchById(book.identifier) ?: bookDao.newRecord()
+        record.run {
+            updateBy(book)
+            store()
+        }
+    }
+
+    /**
+     * レコードを更新する
+     */
+    private fun BookRecord.updateBy(book: Book) {
+        id = book.identifier.value
+        title = book.title.value
+        authorId = book.authorId.value
+        createdAt = book.createdAt.value
+        updatedAt = book.updatedAt.value
+    }
+
+    /**
+     * 取得したデータをドメインオブジェクトにマッピングする
+     */
+    private fun bookMapper(bookRecord: BookRecord): Book {
+        return Book.reconstruct(
+            id = BookId(bookRecord.id),
+            title = BookTitle(bookRecord.title),
+            authorId = AuthorId(bookRecord.authorId),
+            createdAt = CreatedAt(bookRecord.createdAt),
+            updatedAt = UpdatedAt(bookRecord.updatedAt)
         )
     }
 }

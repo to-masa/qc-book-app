@@ -1,11 +1,10 @@
 package com.qcbookapp.infrastructure.book
 
-import com.qcbookapp.domain.model.book.Book
 import com.qcbookapp.domain.model.book.BookId
+import com.qcbookapp.infrastructure.jooq.App
+import com.qcbookapp.infrastructure.jooq.tables.records.BookRecord
 import org.jooq.DSLContext
-import org.jooq.impl.DSL
 import org.springframework.stereotype.Component
-import java.time.LocalDateTime
 
 /**
  * 書籍テーブルとやりとりするクラス
@@ -14,46 +13,23 @@ import java.time.LocalDateTime
 class BookDao(
     private val dslContext: DSLContext,
 ) {
-
-    fun newRecord() = dslContext.newRecord(DSL.table("app.book"))
+    private val jAppSchema: App = App.APP
+    private val jBookTable = jAppSchema.BOOK
+    fun newRecord(): BookRecord = dslContext.newRecord(jBookTable)
 
     /**
      * 全ての書籍を取得する
      */
-    fun findAll(): List<BookRow> {
-        return dslContext.selectFrom("app.book")
+    fun findAll(): List<BookRecord> {
+        return dslContext.selectFrom(jBookTable)
             .fetch()
-            .into(BookRow::class.java)
+            .into(jBookTable)
     }
 
-    fun findById(id: BookId): BookRow? {
-        return dslContext.selectFrom("app.book")
-            .where(DSL.field("id").eq(id.value))
+    fun fetchById(id: BookId): BookRecord? {
+        return dslContext.selectFrom(jBookTable)
+            .where(jBookTable.ID.eq(id.value))
             .fetchOne()
-            ?.into(BookRow::class.java)
+            ?.into(jBookTable)
     }
-
-    fun insert(book: Book) {
-        dslContext.insertInto(DSL.table("app.book"))
-            .columns(DSL.field("id"), DSL.field("title"), DSL.field("author_id"), DSL.field("created_at"), DSL.field("updated_at"))
-            .values(book.identifier.value, book.title.value, book.authorId.value, book.createdAt.value, book.updatedAt.value)
-            .execute()
-    }
-
-    fun update(book: Book) {
-        dslContext.update(DSL.table("app.book"))
-            .set(DSL.field("title"), book.title.value)
-            .set(DSL.field("author_id"), book.authorId)
-            .set(DSL.field("updated_at"), book.updatedAt.value)
-            .where(DSL.field("id").eq(book.identifier.value))
-            .execute()
-    }
-
-    class BookRow(
-        val id: Long,
-        val title: String,
-        val authorId: Long,
-        val createdAt: LocalDateTime,
-        val updatedAt: LocalDateTime
-    )
 }
