@@ -17,7 +17,7 @@ class CreateBookUseCase(
     private val authorRepository: AuthorRepository
 ) {
     fun execute(param: CreateBookParam): BookDto {
-        authorRepository.findById(param.authorId) ?: throw EntityNotFoundException("著者が見つかりませんでした")
+        authorRepository.fetchById(param.authorId) ?: throw EntityNotFoundException("著者が見つかりませんでした")
 
         // 書籍を作成する
         val created: Book = Book.create(

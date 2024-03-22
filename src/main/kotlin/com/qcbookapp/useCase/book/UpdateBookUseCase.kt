@@ -18,7 +18,7 @@ class UpdateBookUseCase(
     private val authorRepository: AuthorRepository,
 ) {
     fun execute(id: BookId, param: UpdateBookParam): BookDto {
-        authorRepository.findById(param.authorId)?: throw EntityNotFoundException("著者が見つかりませんでした")
+        authorRepository.fetchById(param.authorId)?: throw EntityNotFoundException("著者が見つかりませんでした")
 
         // 書籍を更新する
         val book: Book = bookRepository.findById(id)?: throw EntityNotFoundException("書籍が見つかりませんでした")

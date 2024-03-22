@@ -15,7 +15,7 @@ class GetAuthorByIdUseCase(
     private val authorRepository: AuthorRepository
 ) {
     fun execute(id: AuthorId): AuthorDto {
-        val author: Author = authorRepository.findById(id)?: throw EntityNotFoundException("書籍が見つかりませんでした")
+        val author: Author = authorRepository.fetchById(id)?: throw EntityNotFoundException("書籍が見つかりませんでした")
         return AuthorDto.fromDomain(author)
     }
 }
