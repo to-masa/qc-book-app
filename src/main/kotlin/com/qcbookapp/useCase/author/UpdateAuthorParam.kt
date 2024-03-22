@@ -1,12 +1,12 @@
-package com.qcbookapp.presentation.rest.author
+package com.qcbookapp.useCase.author
 
 import com.qcbookapp.domain.model.author.AuthorKana
 import com.qcbookapp.domain.model.author.AuthorName
 
 /**
- * 著者作成パラメータ
+ * 著者更新パラメータ
  */
-data class CreateAuthorParam(
+data class UpdateAuthorParam(
     val name: AuthorName,
     val kana: AuthorKana,
 )

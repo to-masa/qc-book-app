@@ -3,7 +3,6 @@ package com.qcbookapp.useCase.book
 import com.qcbookapp.domain.model.EntityNotFoundException
 import com.qcbookapp.domain.model.book.Book
 import com.qcbookapp.domain.model.book.BookId
-import com.qcbookapp.presentation.rest.book.UpdateBookParam
 import com.qcbookapp.useCase.author.AuthorRepository
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional

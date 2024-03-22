@@ -1,7 +1,6 @@
 package com.qcbookapp.useCase.author
 
 import com.qcbookapp.domain.model.author.Author
-import com.qcbookapp.presentation.rest.author.CreateAuthorParam
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
 

@@ -1,9 +1,12 @@
-package com.qcbookapp.presentation.rest.book
+package com.qcbookapp.useCase.book
 
 import com.qcbookapp.domain.model.author.AuthorId
 import com.qcbookapp.domain.model.book.BookTitle
 
-data class CreateBookParam(
+/**
+ * 書籍更新パラメータ
+ */
+data class UpdateBookParam(
     val title: BookTitle,
     val authorId: AuthorId,
 )

@@ -2,6 +2,7 @@ package com.qcbookapp.presentation.rest.author
 
 import com.qcbookapp.domain.model.author.AuthorKana
 import com.qcbookapp.domain.model.author.AuthorName
+import com.qcbookapp.useCase.author.UpdateAuthorParam
 import org.springframework.web.bind.annotation.RequestParam
 
 /**
