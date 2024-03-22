@@ -8,14 +8,14 @@ import com.qcbookapp.domain.service.TextLengthValidator
  * - 値オブジェクト
  */
 data class AuthorKana(
-    val value: String
+    val value: String,
 ) {
     init {
         TextLengthValidator.execute(
             value = value,
             minLength = 1,
             maxLength = 100,
-            label = LABEL
+            label = LABEL,
         )
         // ひらがなのみを許容する
         if (!value.matches(FORMAT_REGEX)) {

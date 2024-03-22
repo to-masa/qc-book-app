@@ -11,7 +11,7 @@ data class UpdateBookRequest(
     @RequestParam
     val title: String,
     @RequestParam
-    val authorId: Long
+    val authorId: Long,
 ) {
     fun toParam(): UpdateBookParam {
         return UpdateBookParam(BookTitle(title), AuthorId(authorId))

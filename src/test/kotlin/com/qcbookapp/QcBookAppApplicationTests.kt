@@ -9,5 +9,4 @@ class QcBookAppApplicationTests {
     @Test
     fun contextLoads() {
     }
-
 }

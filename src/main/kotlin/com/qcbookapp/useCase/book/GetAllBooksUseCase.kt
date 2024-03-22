@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional
 @Component
 @Transactional(readOnly = true)
 class GetAllBooksUseCase(
-    private val bookRepository: BookRepository
+    private val bookRepository: BookRepository,
 ) {
     fun execute(): List<BookDto> {
         val books: List<Book> = bookRepository.findAll()

@@ -7,7 +7,7 @@ class BookResponse(
     val title: String,
     val authorId: Long,
     val createdAt: String,
-    val updatedAt: String
+    val updatedAt: String,
 
 ) {
 
@@ -19,9 +19,8 @@ class BookResponse(
                     title = title,
                     authorId = authorId,
                     createdAt = createdAt.toString(),
-                    updatedAt = updatedAt.toString()
+                    updatedAt = updatedAt.toString(),
                 )
-
             }
         }
     }

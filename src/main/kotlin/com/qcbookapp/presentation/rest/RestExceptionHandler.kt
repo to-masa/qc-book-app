@@ -13,11 +13,11 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import java.lang.Exception
 
 @RestControllerAdvice
-class RestExceptionHandler: ResponseEntityExceptionHandler() {
+class RestExceptionHandler : ResponseEntityExceptionHandler() {
 
     @ExceptionHandler(Exception::class)
     fun handling(
-        exceptionHandler: Exception
+        exceptionHandler: Exception,
     ): ResponseEntity<ErrorResponseBody> {
         return when (exceptionHandler) {
             is EntityNotFoundException -> handleEntityNotFoundException(exceptionHandler)
@@ -41,7 +41,6 @@ class RestExceptionHandler: ResponseEntityExceptionHandler() {
         )
         return ResponseEntity<ErrorResponseBody>(body, httpStatus)
     }
-
 
     private fun handleDomainException(
         exception: Exception,
@@ -84,7 +83,7 @@ class RestExceptionHandler: ResponseEntityExceptionHandler() {
         body: Any?,
         headers: HttpHeaders,
         statusCode: HttpStatusCode,
-        request: WebRequest
+        request: WebRequest,
     ): ResponseEntity<Any>? {
         val errorBody = ErrorResponseBody(
             error = ErrorInfo(
@@ -143,6 +142,6 @@ class RestExceptionHandler: ResponseEntityExceptionHandler() {
         INTERNAL_SERVER_ERROR(
             code = HttpStatus.INTERNAL_SERVER_ERROR.value().toString(),
             message = "サーバーでエラーが発生しました",
-        )
+            ),
     }
 }

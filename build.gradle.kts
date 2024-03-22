@@ -14,6 +14,7 @@ plugins {
     kotlin("plugin.spring") version "1.9.22"
     id("nu.studer.jooq") version "8.2.3"
     id("org.flywaydb.flyway") version "10.10.0"
+    id("org.jmailen.kotlinter") version "3.14.0"
 }
 
 group = "com"

@@ -8,5 +8,5 @@ import com.qcbookapp.domain.model.author.AuthorName
  */
 data class UpdateAuthorParam(
     val name: AuthorName,
-    val kana: AuthorKana
+    val kana: AuthorKana,
 )

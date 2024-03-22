@@ -24,7 +24,7 @@ class UpdateBookUseCase(
         val book: Book = bookRepository.fetchById(id) ?: throw EntityNotFoundException("書籍が見つかりませんでした")
         val updated: Book = book.update(
             title = param.title,
-            authorId = param.authorId
+            authorId = param.authorId,
         )
         bookRepository.update(updated)
 

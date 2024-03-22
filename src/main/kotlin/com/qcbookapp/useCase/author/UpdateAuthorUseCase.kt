@@ -16,12 +16,11 @@ class UpdateAuthorUseCase(
     private val authorRepository: AuthorRepository,
 ) {
     fun execute(id: AuthorId, param: UpdateAuthorParam): AuthorDto {
-
         // 書籍を更新する
-        val author: Author = authorRepository.fetchById(id)?: throw EntityNotFoundException("著者が見つかりませんでした")
+        val author: Author = authorRepository.fetchById(id) ?: throw EntityNotFoundException("著者が見つかりませんでした")
         val updated: Author = author.update(
             name = param.name,
-            kana = param.kana
+            kana = param.kana,
         )
         authorRepository.update(updated)
 

@@ -14,10 +14,10 @@ object TextLengthValidator {
      * @param label ラベル
      */
     fun execute(value: String, minLength: Int, maxLength: Int, label: String) {
-        if(value.length < minLength) {
+        if (value.length < minLength) {
             throw DomainException("${label}は${minLength}文字以上で入力してください")
         }
-        if(value.length > maxLength) {
+        if (value.length > maxLength) {
             throw DomainException("${label}は${maxLength}文字以下で入力してください")
         }
     }

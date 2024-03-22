@@ -11,14 +11,13 @@ import org.springframework.transaction.annotation.Transactional
 @Component
 @Transactional
 class CreateAuthorUseCase(
-    private val authorRepository: AuthorRepository
+    private val authorRepository: AuthorRepository,
 ) {
     fun execute(param: CreateAuthorParam): AuthorDto {
-
         // 書籍を作成する
         val created: Author = Author.create(
             name = param.name,
-            kana = param.kana
+            kana = param.kana,
         )
         authorRepository.insert(created)
 

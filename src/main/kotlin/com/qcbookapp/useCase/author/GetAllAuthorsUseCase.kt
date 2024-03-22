@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional
 @Component
 @Transactional(readOnly = true)
 class GetAllAuthorsUseCase(
-    private val authorRepository: AuthorRepository
+    private val authorRepository: AuthorRepository,
 ) {
     fun execute(): List<AuthorDto> {
         val authors: List<Author> = authorRepository.findAll()

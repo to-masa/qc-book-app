@@ -15,7 +15,7 @@ class Book private constructor(
     val authorId: AuthorId,
     override val createdAt: CreatedAt,
     override val updatedAt: UpdatedAt,
-): MutableAggregation<Book> {
+) : MutableAggregation<Book> {
 
     companion object {
 
@@ -28,7 +28,7 @@ class Book private constructor(
                 title = title,
                 authorId = authorId,
                 createdAt = CreatedAt.of(),
-                updatedAt = UpdatedAt.of()
+                updatedAt = UpdatedAt.of(),
             )
         }
 
@@ -41,7 +41,7 @@ class Book private constructor(
                 title = title,
                 authorId = authorId,
                 createdAt = createdAt,
-                updatedAt = updatedAt
+                updatedAt = updatedAt,
             )
         }
     }
@@ -52,7 +52,7 @@ class Book private constructor(
     fun update(title: BookTitle, authorId: AuthorId): Book {
         return privateUpdate(
             title = title,
-            authorId = authorId
+            authorId = authorId,
         )
     }
 
@@ -68,7 +68,7 @@ class Book private constructor(
             title = title,
             authorId = authorId,
             createdAt = before.createdAt,
-            updatedAt = UpdatedAt.of()
+            updatedAt = UpdatedAt.of(),
         )
     }
 }

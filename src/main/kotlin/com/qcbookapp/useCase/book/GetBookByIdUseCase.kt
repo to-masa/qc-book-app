@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional
 @Component
 @Transactional(readOnly = true)
 class GetBookByIdUseCase(
-    private val bookRepository: BookRepository
+    private val bookRepository: BookRepository,
 ) {
     fun execute(id: BookId): BookDto {
         val book: Book = bookRepository.fetchById(id) ?: throw EntityNotFoundException("書籍が見つかりませんでした")

@@ -21,12 +21,11 @@ class BookTest : BehaviorSpec({
             When("作成した時") {
                 val created: Book = Book.create(
                     title = BookTitle(title),
-                    authorId = AuthorId(authorId)
+                    authorId = AuthorId(authorId),
                 )
                 Then("書籍IDが作成されること") {
                     created.identifier.shouldNotBeNull()
                     created.identifier.value.shouldBeTypeOf<Long>()
-
                 }
                 Then("書籍タイトルが指定した値で作成されること") {
                     created.title.value.shouldBe(title)
@@ -53,7 +52,7 @@ class BookTest : BehaviorSpec({
                         shouldThrow<DomainException> {
                             Book.create(
                                 title = BookTitle(title),
-                                authorId = AuthorId(authorId)
+                                authorId = AuthorId(authorId),
                             )
                         }.message.shouldBe("書籍タイトルは1文字以上で入力してください")
                     }
@@ -67,7 +66,7 @@ class BookTest : BehaviorSpec({
                         shouldThrow<DomainException> {
                             Book.create(
                                 title = BookTitle(title),
-                                authorId = AuthorId(authorId)
+                                authorId = AuthorId(authorId),
                             )
                         }.message.shouldBe("書籍タイトルは100文字以下で入力してください")
                     }
@@ -81,7 +80,7 @@ class BookTest : BehaviorSpec({
         val authorId = 1L
         val before: Book = Book.create(
             title = BookTitle(title),
-            authorId = AuthorId(authorId)
+            authorId = AuthorId(authorId),
         )
         And("正常系") {
             When("更新した時") {
@@ -89,7 +88,7 @@ class BookTest : BehaviorSpec({
                 val updatedAuthorId = 2L
                 val updated: Book = before.update(
                     title = BookTitle(updatedTitle),
-                    authorId = AuthorId(updatedAuthorId)
+                    authorId = AuthorId(updatedAuthorId),
                 )
                 Then("書籍IDが更新されないこと") {
                     updated.identifier.shouldBe(before.identifier)
@@ -118,7 +117,7 @@ class BookTest : BehaviorSpec({
                         shouldThrow<DomainException> {
                             before.update(
                                 title = BookTitle(updatedTitle),
-                                authorId = AuthorId(updatedAuthorId)
+                                authorId = AuthorId(updatedAuthorId),
                             )
                         }.message.shouldBe("書籍タイトルは1文字以上で入力してください")
                     }
@@ -132,7 +131,7 @@ class BookTest : BehaviorSpec({
                         shouldThrow<DomainException> {
                             before.update(
                                 title = BookTitle(updatedTitle),
-                                authorId = AuthorId(updatedAuthorId)
+                                authorId = AuthorId(updatedAuthorId),
                             )
                         }.message.shouldBe("書籍タイトルは100文字以下で入力してください")
                     }
@@ -154,7 +153,7 @@ class BookTest : BehaviorSpec({
                     title = BookTitle(title),
                     authorId = AuthorId(authorId),
                     createdAt = CreatedAt(createdAt),
-                    updatedAt = UpdatedAt(updatedAt)
+                    updatedAt = UpdatedAt(updatedAt),
                 )
                 Then("書籍IDが指定した値で再構築されること") {
                     reconstructed.identifier.value.shouldBe(id)
@@ -189,7 +188,7 @@ class BookTest : BehaviorSpec({
                                 title = BookTitle(title),
                                 authorId = AuthorId(authorId),
                                 createdAt = CreatedAt(createdAt),
-                                updatedAt = UpdatedAt(updatedAt)
+                                updatedAt = UpdatedAt(updatedAt),
                             )
                         }.message.shouldBe("書籍タイトルは1文字以上で入力してください")
                     }
@@ -209,7 +208,7 @@ class BookTest : BehaviorSpec({
                                 title = BookTitle(title),
                                 authorId = AuthorId(authorId),
                                 createdAt = CreatedAt(createdAt),
-                                updatedAt = UpdatedAt(updatedAt)
+                                updatedAt = UpdatedAt(updatedAt),
                             )
                         }.message.shouldBe("書籍タイトルは100文字以下で入力してください")
                     }

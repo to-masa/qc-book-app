@@ -8,7 +8,7 @@ data class CreateBookRequest(
     @RequestParam
     val title: String,
     @RequestParam
-    val authorId: Long
+    val authorId: Long,
 ) {
     fun toParam(): CreateBookParam {
         return CreateBookParam(BookTitle(title), AuthorId(authorId))

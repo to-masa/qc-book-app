@@ -30,7 +30,7 @@ class AuthorDao(
     fun fetchById(id: AuthorId): AuthorRecord? {
         return dslContext.selectFrom(jAuthorTable)
             .where(
-                jAuthorTable.ID.eq(id.value)
+                jAuthorTable.ID.eq(id.value),
             )
             .fetchOne()
             ?.into(jAuthorTable)

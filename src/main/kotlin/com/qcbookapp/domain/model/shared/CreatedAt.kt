@@ -7,12 +7,12 @@ import java.time.LocalDateTime
  * - 値オブジェクト
  */
 data class CreatedAt(
-    val value: LocalDateTime
+    val value: LocalDateTime,
 ) {
     companion object {
         fun of(): CreatedAt {
             return CreatedAt(
-                value = LocalDateTime.now()
+                value = LocalDateTime.now(),
             )
         }
     }

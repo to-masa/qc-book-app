@@ -20,7 +20,7 @@ class AuthorTest : BehaviorSpec({
                 val kana = "てすと たろう"
                 val created = Author.create(
                     name = AuthorName(name),
-                    kana = AuthorKana(kana)
+                    kana = AuthorKana(kana),
                 )
                 Then("著者IDが作成されること") {
                     created.identifier.shouldNotBeNull()
@@ -56,7 +56,7 @@ class AuthorTest : BehaviorSpec({
                             shouldThrow<DomainException> {
                                 Author.create(
                                     name = AuthorName(name),
-                                    kana = AuthorKana(kana)
+                                    kana = AuthorKana(kana),
                                 )
                             }.message.shouldBe("著者名は1文字以上で入力してください")
                         }
@@ -72,7 +72,7 @@ class AuthorTest : BehaviorSpec({
                             shouldThrow<DomainException> {
                                 Author.create(
                                     name = AuthorName(name),
-                                    kana = AuthorKana(kana)
+                                    kana = AuthorKana(kana),
                                 )
                             }.message.shouldBe("著者名(かな)は1文字以上で入力してください")
                         }
@@ -88,7 +88,7 @@ class AuthorTest : BehaviorSpec({
                             shouldThrow<DomainException> {
                                 Author.create(
                                     name = AuthorName(name),
-                                    kana = AuthorKana(kana)
+                                    kana = AuthorKana(kana),
                                 )
                             }.message.shouldBe("著者名は100文字以下で入力してください")
                         }
@@ -104,7 +104,7 @@ class AuthorTest : BehaviorSpec({
                             shouldThrow<DomainException> {
                                 Author.create(
                                     name = AuthorName(name),
-                                    kana = AuthorKana(kana)
+                                    kana = AuthorKana(kana),
                                 )
                             }.message.shouldBe("著者名(かな)は100文字以下で入力してください")
                         }
@@ -120,7 +120,7 @@ class AuthorTest : BehaviorSpec({
                             shouldThrow<DomainException> {
                                 Author.create(
                                     name = AuthorName(name),
-                                    kana = AuthorKana(kana)
+                                    kana = AuthorKana(kana),
                                 )
                             }.message.shouldBe("著者名(かな)はひらがなで入力してください")
                         }
@@ -137,7 +137,7 @@ class AuthorTest : BehaviorSpec({
         val kana = "てすと たろう"
         val before: Author = Author.create(
             name = AuthorName(name),
-            kana = AuthorKana(kana)
+            kana = AuthorKana(kana),
         )
         And("正常系") {
             When("更新した時") {
@@ -145,7 +145,7 @@ class AuthorTest : BehaviorSpec({
                 val updatedKana = "てすと はなこ"
                 val updated: Author = before.update(
                     name = AuthorName(updatedName),
-                    kana = AuthorKana(updatedKana)
+                    kana = AuthorKana(updatedKana),
                 )
                 Then("著者IDが更新されないこと") {
                     updated.identifier.shouldNotBeNull()
@@ -175,7 +175,7 @@ class AuthorTest : BehaviorSpec({
                             shouldThrow<DomainException> {
                                 before.update(
                                     name = AuthorName(updatedName),
-                                    kana = AuthorKana(updatedKana)
+                                    kana = AuthorKana(updatedKana),
                                 )
                             }.message.shouldBe("著者名は1文字以上で入力してください")
                         }
@@ -191,7 +191,7 @@ class AuthorTest : BehaviorSpec({
                             shouldThrow<DomainException> {
                                 before.update(
                                     name = AuthorName(updatedName),
-                                    kana = AuthorKana(updatedKana)
+                                    kana = AuthorKana(updatedKana),
                                 )
                             }.message.shouldBe("著者名(かな)は1文字以上で入力してください")
                         }
@@ -207,7 +207,7 @@ class AuthorTest : BehaviorSpec({
                             shouldThrow<DomainException> {
                                 before.update(
                                     name = AuthorName(updatedName),
-                                    kana = AuthorKana(updatedKana)
+                                    kana = AuthorKana(updatedKana),
                                 )
                             }.message.shouldBe("著者名は100文字以下で入力してください")
                         }
@@ -223,7 +223,7 @@ class AuthorTest : BehaviorSpec({
                             shouldThrow<DomainException> {
                                 before.update(
                                     name = AuthorName(updatedName),
-                                    kana = AuthorKana(updatedKana)
+                                    kana = AuthorKana(updatedKana),
                                 )
                             }.message.shouldBe("著者名(かな)は100文字以下で入力してください")
                         }
@@ -239,7 +239,7 @@ class AuthorTest : BehaviorSpec({
                             shouldThrow<DomainException> {
                                 before.update(
                                     name = AuthorName(updatedName),
-                                    kana = AuthorKana(updatedKana)
+                                    kana = AuthorKana(updatedKana),
                                 )
                             }.message.shouldBe("著者名(かな)はひらがなで入力してください")
                         }
@@ -261,7 +261,7 @@ class AuthorTest : BehaviorSpec({
                     name = AuthorName(name),
                     kana = AuthorKana(kana),
                     createdAt = createdAt,
-                    updatedAt = updatedAt
+                    updatedAt = updatedAt,
                 )
                 Then("著者IDが指定した値で再構築されること") {
                     reconstructed.identifier.shouldBe(id)
@@ -296,7 +296,7 @@ class AuthorTest : BehaviorSpec({
                                     name = AuthorName(name),
                                     kana = AuthorKana(kana),
                                     createdAt = createdAt,
-                                    updatedAt = updatedAt
+                                    updatedAt = updatedAt,
                                 )
                             }.message.shouldBe("著者名は1文字以上で入力してください")
                         }
@@ -318,7 +318,7 @@ class AuthorTest : BehaviorSpec({
                                     name = AuthorName(name),
                                     kana = AuthorKana(kana),
                                     createdAt = createdAt,
-                                    updatedAt = updatedAt
+                                    updatedAt = updatedAt,
                                 )
                             }.message.shouldBe("著者名(かな)は1文字以上で入力してください")
                         }
@@ -340,7 +340,7 @@ class AuthorTest : BehaviorSpec({
                                     name = AuthorName(name),
                                     kana = AuthorKana(kana),
                                     createdAt = createdAt,
-                                    updatedAt = updatedAt
+                                    updatedAt = updatedAt,
                                 )
                             }
                             exception.message.shouldBe("著者名は100文字以下で入力してください")
@@ -363,7 +363,7 @@ class AuthorTest : BehaviorSpec({
                                     name = AuthorName(name),
                                     kana = AuthorKana(kana),
                                     createdAt = createdAt,
-                                    updatedAt = updatedAt
+                                    updatedAt = updatedAt,
                                 )
                             }.message.shouldBe("著者名(かな)は100文字以下で入力してください")
                         }
@@ -385,7 +385,7 @@ class AuthorTest : BehaviorSpec({
                                     name = AuthorName(name),
                                     kana = AuthorKana(kana),
                                     createdAt = createdAt,
-                                    updatedAt = updatedAt
+                                    updatedAt = updatedAt,
                                 )
                             }.message.shouldBe("著者名(かな)はひらがなで入力してください")
                         }

@@ -11,7 +11,7 @@ class BookDto(
     val title: String,
     val authorId: Long,
     val createdAt: LocalDateTime,
-    val updatedAt: LocalDateTime
+    val updatedAt: LocalDateTime,
 ) {
     companion object {
         fun fromDomain(book: Book): BookDto {
@@ -20,7 +20,7 @@ class BookDto(
                 title = book.title.value,
                 authorId = book.authorId.value,
                 createdAt = book.createdAt.value,
-                updatedAt = book.updatedAt.value
+                updatedAt = book.updatedAt.value,
             )
         }
     }

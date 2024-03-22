@@ -14,7 +14,7 @@ class Author private constructor(
     val kana: AuthorKana,
     override val createdAt: CreatedAt,
     override val updatedAt: UpdatedAt,
-): MutableAggregation<Author> {
+) : MutableAggregation<Author> {
 
     companion object {
 
@@ -27,7 +27,7 @@ class Author private constructor(
                 name = name,
                 kana = kana,
                 createdAt = CreatedAt.of(),
-                updatedAt = UpdatedAt.of()
+                updatedAt = UpdatedAt.of(),
             )
         }
 
@@ -40,11 +40,10 @@ class Author private constructor(
                 name = name,
                 kana = kana,
                 createdAt = createdAt,
-                updatedAt = updatedAt
+                updatedAt = updatedAt,
             )
         }
     }
-
 
     /**
      * 著者を更新する
@@ -52,7 +51,7 @@ class Author private constructor(
     fun update(name: AuthorName, kana: AuthorKana): Author {
         return privateUpdate(
             name = name,
-            kana = kana
+            kana = kana,
         )
     }
 
@@ -68,7 +67,7 @@ class Author private constructor(
             name = name,
             kana = kana,
             createdAt = before.createdAt,
-            updatedAt = UpdatedAt.of()
+            updatedAt = UpdatedAt.of(),
         )
     }
 }

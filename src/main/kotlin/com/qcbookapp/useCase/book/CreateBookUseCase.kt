@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional
 @Transactional
 class CreateBookUseCase(
     private val bookRepository: BookRepository,
-    private val authorRepository: AuthorRepository
+    private val authorRepository: AuthorRepository,
 ) {
     fun execute(param: CreateBookParam): BookDto {
         authorRepository.fetchById(param.authorId) ?: throw EntityNotFoundException("著者が見つかりませんでした")
@@ -22,7 +22,7 @@ class CreateBookUseCase(
         // 書籍を作成する
         val created: Book = Book.create(
             title = param.title,
-            authorId = param.authorId
+            authorId = param.authorId,
         )
         bookRepository.insert(created)
 

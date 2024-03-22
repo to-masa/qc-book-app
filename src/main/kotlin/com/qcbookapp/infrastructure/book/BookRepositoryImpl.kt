@@ -80,7 +80,7 @@ class BookRepositoryImpl(
             title = BookTitle(bookRecord.title),
             authorId = AuthorId(bookRecord.authorId),
             createdAt = CreatedAt(bookRecord.createdAt),
-            updatedAt = UpdatedAt(bookRecord.updatedAt)
+            updatedAt = UpdatedAt(bookRecord.updatedAt),
         )
     }
 }

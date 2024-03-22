@@ -10,7 +10,7 @@ class AuthorResponse(
     val name: String,
     val kana: String,
     val createdAt: String,
-    val updatedAt: String
+    val updatedAt: String,
 
 ) {
 
@@ -22,9 +22,8 @@ class AuthorResponse(
                     name = name,
                     kana = kana,
                     createdAt = createdAt.toString(),
-                    updatedAt = updatedAt.toString()
+                    updatedAt = updatedAt.toString(),
                 )
-
             }
         }
     }

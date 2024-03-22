@@ -11,7 +11,7 @@ data class UpdateAuthorRequest(
     @RequestParam
     val name: String,
     @RequestParam
-    val kana: String
+    val kana: String,
 ) {
     fun toParam(): UpdateAuthorParam {
         return UpdateAuthorParam(AuthorName(name), AuthorKana(kana))

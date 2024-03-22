@@ -22,7 +22,7 @@ class BookController(
     private val getAllBooksUseCase: GetAllBooksUseCase,
     private val getBooksByIdUseCase: GetBookByIdUseCase,
     private val createBookUseCase: CreateBookUseCase,
-    private val updateBookUseCase: UpdateBookUseCase
+    private val updateBookUseCase: UpdateBookUseCase,
 ) {
 
     /**

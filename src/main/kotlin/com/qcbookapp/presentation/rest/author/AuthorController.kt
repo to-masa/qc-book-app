@@ -22,7 +22,7 @@ class AuthorController(
     private val getAllAuthorsUseCase: GetAllAuthorsUseCase,
     private val getAuthorByIdUseCase: GetAuthorByIdUseCase,
     private val createAuthorUseCase: CreateAuthorUseCase,
-    private val updateAuthorUseCase: UpdateAuthorUseCase
+    private val updateAuthorUseCase: UpdateAuthorUseCase,
 ) {
 
     /**
