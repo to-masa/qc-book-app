@@ -29,8 +29,8 @@ class BookRepositoryImpl(
     /**
      * IDで書籍を取得する
      */
-    override fun findById(id: BookId): Book? {
-        return bookDao.findById(id)?.let(rootMapper)
+    override fun fetchById(id: BookId): Book? {
+        return bookDao.fetchById(id)?.let { bookRecord -> bookMapper(bookRecord) }
     }
 
     /**

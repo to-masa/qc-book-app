@@ -9,7 +9,7 @@ import com.qcbookapp.domain.model.book.BookId
 abstract class BookRepository {
     abstract fun findAll(): List<Book>
 
-    abstract fun findById(id: BookId): Book?
+    abstract fun fetchById(id: BookId): Book?
 
     abstract fun insert(book: Book)
 
