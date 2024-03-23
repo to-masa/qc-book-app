@@ -28,6 +28,9 @@ repositories {
     mavenCentral()
 }
 
+val jooqVersion: String by project
+val postgresDriverVersion: String by project
+
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
@@ -42,12 +45,12 @@ dependencies {
     testImplementation("io.kotest.extensions:kotest-extensions-spring:1.1.2")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    implementation("org.jooq:jooq-codegen:3.19.1")
-    implementation("org.jooq:jooq:3.19.1")
-    implementation("org.jooq:jooq-meta:3.19.1")
-    runtimeOnly("org.postgresql:postgresql:42.7.3")
-    jooqGenerator("org.postgresql:postgresql:42.7.3")
-    jooqGenerator("org.jooq:jooq-codegen:3.19.1")
+    implementation("org.jooq:jooq-codegen:$jooqVersion")
+    implementation("org.jooq:jooq:$jooqVersion")
+    implementation("org.jooq:jooq-meta:$jooqVersion")
+    runtimeOnly("org.postgresql:postgresql:$postgresDriverVersion")
+    jooqGenerator("org.postgresql:postgresql:$postgresDriverVersion")
+    jooqGenerator("org.jooq:jooq-codegen:$jooqVersion")
 }
 
 tasks.withType<KotlinCompile> {
@@ -68,7 +71,7 @@ flyway {
 }
 
 jooq {
-    version.set("3.19.1")
+    version.set(jooqVersion)
     edition.set(nu.studer.gradle.jooq.JooqEdition.OSS)
     configurations {
         create("main") {
