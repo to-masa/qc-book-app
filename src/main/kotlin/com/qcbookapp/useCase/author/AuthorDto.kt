@@ -4,7 +4,7 @@ import com.qcbookapp.domain.model.author.Author
 import java.time.LocalDateTime
 
 /**
- * 書籍DTO
+ * 著者DTO
  */
 class AuthorDto(
     val id: Long,
@@ -14,13 +14,13 @@ class AuthorDto(
     val updatedAt: LocalDateTime,
 ) {
     companion object {
-        fun fromDomain(book: Author): AuthorDto {
+        fun fromDomain(author: Author): AuthorDto {
             return AuthorDto(
-                id = book.identifier.value,
-                name = book.name.value,
-                kana = book.kana.value,
-                createdAt = book.createdAt.value,
-                updatedAt = book.updatedAt.value,
+                id = author.identifier.value,
+                name = author.name.value,
+                kana = author.kana.value,
+                createdAt = author.createdAt.value,
+                updatedAt = author.updatedAt.value,
             )
         }
     }
