@@ -10,8 +10,8 @@ import io.mockk.mockk
 
 class GetAllAuthorsUseCaseTest : BehaviorSpec({
 
-    Given("著者一覧を取得するユースケース") {
-        When("著者が存在する時") {
+    Given("全ての著者を取得するユースケース") {
+        And("著者が存在する場合") {
             val authors = listOf(
                 Author.create(
                     name = AuthorName("てすと 太郎"),
@@ -28,27 +28,33 @@ class GetAllAuthorsUseCaseTest : BehaviorSpec({
                 authorRepository = mockAuthorRepository,
             )
 
+            // モックの設定
             every { mockAuthorRepository.findAll() } returns authors
 
-            val result: List<AuthorDto> = getAllAuthorsUseCase.execute()
+            When("実行した時") {
+                val result: List<AuthorDto> = getAllAuthorsUseCase.execute()
 
-            Then("全件が取得されること") {
-                result.size.shouldBe(authors.size)
+                Then("全件が取得されること") {
+                    result.size.shouldBe(authors.size)
+                }
             }
         }
 
-        When("著者が存在しない時") {
+        And("著者が存在しない時") {
             val mockAuthorRepository: AuthorRepository = mockk()
             val getAllAuthorsUseCase = GetAllAuthorsUseCase(
                 authorRepository = mockAuthorRepository,
             )
 
+            // モックの設定
             every { mockAuthorRepository.findAll() } returns emptyList()
 
-            val result: List<AuthorDto> = getAllAuthorsUseCase.execute()
+            When("実行した時") {
+                val result: List<AuthorDto> = getAllAuthorsUseCase.execute()
 
-            Then("空のリストが返ること") {
-                result.size.shouldBe(0)
+                Then("空のリストが返ること") {
+                    result.size.shouldBe(0)
+                }
             }
         }
     }
