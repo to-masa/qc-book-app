@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RestController
 
-const val BOOKS_PATH: String = "/books"
-
 /**
  * 書籍のREST APIコントローラークラス
  */
@@ -24,6 +22,10 @@ class BookController(
     private val createBookUseCase: CreateBookUseCase,
     private val updateBookUseCase: UpdateBookUseCase,
 ) {
+
+    companion object {
+        const val BOOKS_PATH: String = "/books"
+    }
 
     /**
      * 全ての書籍を取得する
