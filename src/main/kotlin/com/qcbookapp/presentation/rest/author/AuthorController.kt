@@ -30,7 +30,7 @@ class AuthorController(
      * 全ての著者を取得する
      */
     @GetMapping(AUTHORS_PATH)
-    fun getAllBooks(): List<AuthorResponse> {
+    fun getAllAuthors(): List<AuthorResponse> {
         val dto: List<AuthorDto> = getAllAuthorsUseCase.execute()
         return dto.map { AuthorResponse.fromDto(it) }
     }
@@ -39,8 +39,8 @@ class AuthorController(
      * 著者を取得する
      */
     @GetMapping("$AUTHORS_PATH/{id}")
-    fun getBook(@PathVariable id: Long): AuthorResponse {
-        val dto: AuthorDto = getAuthorByIdUseCase.execute(AuthorId(id))
+    fun getAuthor(@PathVariable id: Long): AuthorResponse {
+        val dto: AuthorDto = getAuthorByIdUseCase.execute(id = AuthorId(id))
         return AuthorResponse.fromDto(dto)
     }
 
@@ -48,8 +48,8 @@ class AuthorController(
      * 著者を作成する
      */
     @PostMapping(AUTHORS_PATH)
-    fun createBook(request: CreateAuthorRequest): AuthorResponse {
-        val dto: AuthorDto = createAuthorUseCase.execute(request.toParam())
+    fun createAuthor(request: CreateAuthorRequest): AuthorResponse {
+        val dto: AuthorDto = createAuthorUseCase.execute(param = request.toParam())
         return AuthorResponse.fromDto(dto)
     }
 
@@ -57,8 +57,11 @@ class AuthorController(
      * 書籍を更新する
      */
     @PutMapping("$AUTHORS_PATH/{id}")
-    fun updateBook(@PathVariable id: Long, request: UpdateAuthorRequest): AuthorResponse {
-        val dto: AuthorDto = updateAuthorUseCase.execute(AuthorId(id), request.toParam())
+    fun updateAuthor(@PathVariable id: Long, request: UpdateAuthorRequest): AuthorResponse {
+        val dto: AuthorDto = updateAuthorUseCase.execute(
+            id = AuthorId(id),
+            param = request.toParam()
+        )
         return AuthorResponse.fromDto(dto)
     }
 }
