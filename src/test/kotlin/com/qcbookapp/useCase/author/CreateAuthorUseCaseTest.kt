@@ -46,7 +46,7 @@ class CreateAuthorUseCaseTest : BehaviorSpec({
         }
 
         And("異常系") {
-            // ユースケース層で定義したルールはないので省略
+            // ユースケース層で定義したルール・制約はないので省略
         }
     }
 })
