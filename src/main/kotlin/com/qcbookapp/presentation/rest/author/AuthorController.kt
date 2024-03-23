@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RestController
 
-const val AUTHORS_PATH: String = "/authors"
-
 /**
  * 著者のREST APIコントローラークラス
  */
@@ -24,6 +22,9 @@ class AuthorController(
     private val createAuthorUseCase: CreateAuthorUseCase,
     private val updateAuthorUseCase: UpdateAuthorUseCase,
 ) {
+    companion object {
+        const val AUTHORS_PATH: String = "/authors"
+    }
 
     /**
      * 全ての著者を取得する
