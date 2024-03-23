@@ -17,7 +17,7 @@ import org.springframework.stereotype.Repository
 @Repository
 class BookRepositoryImpl(
     private val bookDao: BookDao,
-) : BookRepository() {
+) : BookRepository {
 
     /**
      * 全ての書籍を取得する

@@ -7,14 +7,14 @@ import com.qcbookapp.domain.model.book.BookId
 /**
  * 書籍リポジトリ
  */
-abstract class BookRepository {
-    abstract fun findAll(): List<Book>
+interface BookRepository {
+    fun findAll(): List<Book>
 
-    abstract fun findByAuthorId(authorId: AuthorId): List<Book>
+    fun findByAuthorId(authorId: AuthorId): List<Book>
 
-    abstract fun fetchById(id: BookId): Book?
+    fun fetchById(id: BookId): Book?
 
-    abstract fun insert(book: Book)
+    fun insert(book: Book)
 
-    abstract fun update(book: Book)
+    fun update(book: Book)
 }
