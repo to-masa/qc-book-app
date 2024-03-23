@@ -73,7 +73,10 @@ class BookController(
      */
     @PutMapping("$BOOKS_PATH/{id}")
     fun updateBook(@PathVariable id: Long, request: UpdateBookRequest): BookResponse {
-        val dto = updateBookUseCase.execute(BookId(id), request.toParam())
+        val dto = updateBookUseCase.execute(
+            id = BookId(id),
+            param = request.toParam(),
+        )
         return BookResponse.fromDto(dto)
     }
 }
