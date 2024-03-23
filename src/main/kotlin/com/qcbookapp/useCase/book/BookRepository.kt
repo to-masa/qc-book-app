@@ -1,5 +1,6 @@
 package com.qcbookapp.useCase.book
 
+import com.qcbookapp.domain.model.author.AuthorId
 import com.qcbookapp.domain.model.book.Book
 import com.qcbookapp.domain.model.book.BookId
 
@@ -8,6 +9,8 @@ import com.qcbookapp.domain.model.book.BookId
  */
 abstract class BookRepository {
     abstract fun findAll(): List<Book>
+
+    abstract fun findByAuthorId(authorId: AuthorId): List<Book>
 
     abstract fun fetchById(id: BookId): Book?
 

@@ -27,6 +27,13 @@ class BookRepositoryImpl(
     }
 
     /**
+     * 著者IDに紐づく全ての書籍を取得する
+     */
+    override fun findByAuthorId(authorId: AuthorId): List<Book> {
+        return bookDao.findByAuthorId(authorId).map { bookRecord -> bookMapper(bookRecord) }
+    }
+
+    /**
      * IDで書籍を取得する
      */
     override fun fetchById(id: BookId): Book? {

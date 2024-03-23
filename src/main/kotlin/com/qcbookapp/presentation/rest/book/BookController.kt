@@ -1,8 +1,12 @@
 package com.qcbookapp.presentation.rest.book
 
+import com.qcbookapp.domain.model.author.AuthorId
 import com.qcbookapp.domain.model.book.BookId
+import com.qcbookapp.presentation.rest.author.AuthorController
+import com.qcbookapp.useCase.book.AuthorBooksDto
 import com.qcbookapp.useCase.book.BookDto
 import com.qcbookapp.useCase.book.CreateBookUseCase
+import com.qcbookapp.useCase.book.GetAllBooksByAuthorIdUseCase
 import com.qcbookapp.useCase.book.GetAllBooksUseCase
 import com.qcbookapp.useCase.book.GetBookByIdUseCase
 import com.qcbookapp.useCase.book.UpdateBookUseCase
@@ -19,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController
 class BookController(
     private val getAllBooksUseCase: GetAllBooksUseCase,
     private val getBooksByIdUseCase: GetBookByIdUseCase,
+    private val getAllBooksByAuthorIdUseCase: GetAllBooksByAuthorIdUseCase,
     private val createBookUseCase: CreateBookUseCase,
     private val updateBookUseCase: UpdateBookUseCase,
 ) {
@@ -43,6 +48,15 @@ class BookController(
     fun getBook(@PathVariable id: Long): BookResponse {
         val dto: BookDto = getBooksByIdUseCase.execute(BookId(id))
         return BookResponse.fromDto(dto)
+    }
+
+    /**
+     *  著者に紐づく書籍を取得する
+     */
+    @GetMapping("${AuthorController.AUTHORS_PATH}/{id}$BOOKS_PATH")
+    fun getBooksByAuthor(@PathVariable id: Long): AuthorBooksResponse {
+        val dto: AuthorBooksDto = getAllBooksByAuthorIdUseCase.execute(AuthorId(id))
+        return AuthorBooksResponse.fromDto(dto)
     }
 
     /**
