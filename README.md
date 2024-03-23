@@ -189,9 +189,9 @@
 ## 環境構築
 ### Dockerコンテナの起動方法
 ```bash
-$ docker-compose up --detach
+$ docker compose up --detach
 ```
 ※初回の起動の場合
 ```bash
-$ docker-compose up --build --detach
+$ docker compose up --build --detach
 ```
