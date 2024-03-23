@@ -44,7 +44,7 @@ class UpdateAuthorUseCaseTest : BehaviorSpec({
                     id = author.identifier,
                     param = param,
                 )
-                Then("指定した著者IDの著者が更新されること") {
+                Then("指定したIDの著者が更新されること") {
                     assertSoftly(slot.captured) {
                         identifier.shouldBe(author.identifier)
                         name.shouldBe(updatedAuthorName)
