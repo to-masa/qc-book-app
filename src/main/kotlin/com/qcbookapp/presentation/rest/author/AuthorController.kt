@@ -60,7 +60,7 @@ class AuthorController(
     fun updateAuthor(@PathVariable id: Long, request: UpdateAuthorRequest): AuthorResponse {
         val dto: AuthorDto = updateAuthorUseCase.execute(
             id = AuthorId(id),
-            param = request.toParam()
+            param = request.toParam(),
         )
         return AuthorResponse.fromDto(dto)
     }
