@@ -30,7 +30,7 @@ class GetAuthorByIdUseCaseTest : BehaviorSpec({
                 val result: AuthorDto = getAuthorByIdUseCase.execute(
                     id = author.identifier,
                 )
-                Then("指定した著者IDの著者が取得されること") {
+                Then("指定したIDの著者が取得されること") {
                     assertSoftly(result) {
                         id.shouldBe(author.identifier.value)
                         name.shouldBe(author.name.value)
@@ -41,7 +41,7 @@ class GetAuthorByIdUseCaseTest : BehaviorSpec({
         }
 
         And("異常系") {
-            And("指定した著者IDが存在しない時") {
+            And("指定したIDの著者が存在しない時") {
                 val author: Author = Author.create(
                     name = AuthorName("てすと 太郎"),
                     kana = AuthorKana("てすと たろう"),
