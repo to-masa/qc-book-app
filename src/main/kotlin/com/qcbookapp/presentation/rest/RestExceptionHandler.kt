@@ -90,6 +90,7 @@ class RestExceptionHandler : ResponseEntityExceptionHandler() {
                 code = statusCode.value(),
                 message = when (statusCode) {
                     HttpStatus.NOT_FOUND -> ApiError.NOT_FOUND.message
+                    // FIXME: 何が原因で BAD_REQUEST になったかをメッセージに含めたいが、現状は入力によるエラーでることを返す
                     HttpStatus.BAD_REQUEST -> ApiError.BAD_REQUEST.message
                     HttpStatus.INTERNAL_SERVER_ERROR -> ApiError.INTERNAL_SERVER_ERROR.message
                     else -> ""
@@ -142,6 +143,6 @@ class RestExceptionHandler : ResponseEntityExceptionHandler() {
         INTERNAL_SERVER_ERROR(
             code = HttpStatus.INTERNAL_SERVER_ERROR.value().toString(),
             message = "サーバーでエラーが発生しました",
-            ),
+        ),
     }
 }
