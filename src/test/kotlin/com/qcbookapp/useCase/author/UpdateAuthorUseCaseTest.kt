@@ -32,11 +32,11 @@ class UpdateAuthorUseCaseTest : BehaviorSpec({
             val slot = slot<Author>()
             justRun { mockAuthorRepository.update(capture(slot)) }
 
-            val updateAuthorName = AuthorName("てすと 次郎")
-            val updateAuthorKana = AuthorKana("てすと じろう")
+            val updatedAuthorName = AuthorName("てすと 次郎")
+            val updatedAuthorKana = AuthorKana("てすと じろう")
             val param = UpdateAuthorParam(
-                name = updateAuthorName,
-                kana = updateAuthorKana,
+                name = updatedAuthorName,
+                kana = updatedAuthorKana,
             )
 
             When("実行した時") {
@@ -46,8 +46,9 @@ class UpdateAuthorUseCaseTest : BehaviorSpec({
                 )
                 Then("指定した著者IDの著者が更新されること") {
                     assertSoftly(slot.captured) {
-                        name.shouldBe(updateAuthorName)
-                        kana.shouldBe(updateAuthorKana)
+                        identifier.shouldBe(author.identifier)
+                        name.shouldBe(updatedAuthorName)
+                        kana.shouldBe(updatedAuthorKana)
                     }
                 }
             }
