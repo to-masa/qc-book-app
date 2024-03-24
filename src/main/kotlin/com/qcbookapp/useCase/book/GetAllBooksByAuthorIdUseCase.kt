@@ -1,6 +1,6 @@
 package com.qcbookapp.useCase.book
 
-import com.qcbookapp.domain.model.DomainException
+import com.qcbookapp.domain.model.EntityNotFoundException
 import com.qcbookapp.domain.model.author.Author
 import com.qcbookapp.domain.model.author.AuthorId
 import com.qcbookapp.domain.model.book.Book
@@ -18,7 +18,7 @@ class GetAllBooksByAuthorIdUseCase(
     private val authorRepository: AuthorRepository,
 ) {
     fun execute(authorId: AuthorId): AuthorBooksDto {
-        val author: Author = authorRepository.fetchById(authorId) ?: throw DomainException("著者が見つかりませんでした")
+        val author: Author = authorRepository.fetchById(authorId) ?: throw EntityNotFoundException("著者が見つかりませんでした")
         val books: List<Book> = bookRepository.findByAuthorId(authorId)
 
         return AuthorBooksDto.fromDomain(

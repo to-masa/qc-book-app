@@ -1,6 +1,6 @@
 package com.qcbookapp.useCase.book
 
-import com.qcbookapp.domain.model.DomainException
+import com.qcbookapp.domain.model.EntityNotFoundException
 import com.qcbookapp.domain.model.author.Author
 import com.qcbookapp.domain.model.author.AuthorKana
 import com.qcbookapp.domain.model.author.AuthorName
@@ -81,7 +81,7 @@ class CreateBookUseCaseTest : BehaviorSpec({
                 )
                 When("実行した時") {
                     Then("例外が発生すること") {
-                        shouldThrow<DomainException> {
+                        shouldThrow<EntityNotFoundException> {
                             createBookUseCase.execute(
                                 param = param,
                             )

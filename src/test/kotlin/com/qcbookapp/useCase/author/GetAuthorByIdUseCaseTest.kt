@@ -1,6 +1,6 @@
 package com.qcbookapp.useCase.author
 
-import com.qcbookapp.domain.model.DomainException
+import com.qcbookapp.domain.model.EntityNotFoundException
 import com.qcbookapp.domain.model.author.Author
 import com.qcbookapp.domain.model.author.AuthorKana
 import com.qcbookapp.domain.model.author.AuthorName
@@ -52,7 +52,7 @@ class GetAuthorByIdUseCaseTest : BehaviorSpec({
 
                 When("実行した時") {
                     Then("例外が発生すること") {
-                        shouldThrow<DomainException> {
+                        shouldThrow<EntityNotFoundException> {
                             getAuthorByIdUseCase.execute(
                                 id = author.identifier,
                             )
