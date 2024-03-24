@@ -15,6 +15,10 @@ class AuthorResponse(
 ) {
 
     companion object {
+
+        /**
+         * DTOからレスポンスに変換する
+         */
         fun fromDto(dto: AuthorDto): AuthorResponse {
             dto.run {
                 return AuthorResponse(

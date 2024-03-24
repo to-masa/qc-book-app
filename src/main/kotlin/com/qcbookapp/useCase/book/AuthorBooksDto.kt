@@ -12,6 +12,10 @@ class AuthorBooksDto(
     val books: List<BookDto>,
 ) {
     companion object {
+
+        /**
+         * ドメインオブジェクトからDTOへの変換
+         */
         fun fromDomain(author: Author, books: List<Book>): AuthorBooksDto {
             return AuthorBooksDto(
                 author = AuthorDto.fromDomain(

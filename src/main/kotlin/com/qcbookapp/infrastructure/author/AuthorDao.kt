@@ -16,6 +16,9 @@ class AuthorDao(
     private val jAppSchema: App = App.APP
     private val jAuthorTable = jAppSchema.AUTHOR
 
+    /**
+     * 新規レコードを作成する
+     */
     fun newRecord(): AuthorRecord = dslContext.newRecord(jAuthorTable)
 
     /**
@@ -27,6 +30,9 @@ class AuthorDao(
             .into(jAuthorTable)
     }
 
+    /**
+     * IDで著者を取得する
+     */
     fun fetchById(id: AuthorId): AuthorRecord? {
         return dslContext.selectFrom(jAuthorTable)
             .where(

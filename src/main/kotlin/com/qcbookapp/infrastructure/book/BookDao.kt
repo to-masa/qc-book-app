@@ -16,6 +16,10 @@ class BookDao(
 ) {
     private val jAppSchema: App = App.APP
     private val jBookTable = jAppSchema.BOOK
+
+    /**
+     * 新規レコードを作成する
+     */
     fun newRecord(): BookRecord = dslContext.newRecord(jBookTable)
 
     /**
@@ -36,6 +40,9 @@ class BookDao(
             .fetchInto(jBookTable)
     }
 
+    /**
+     * IDで書籍を取得する
+     */
     fun fetchById(id: BookId): BookRecord? {
         return dslContext.selectFrom(jBookTable)
             .where(jBookTable.ID.eq(id.value))

@@ -14,6 +14,10 @@ data class UpdateAuthorRequest(
     @RequestParam
     val kana: String,
 ) {
+
+    /**
+     * パラメータに変換する
+     */
     fun toParam(): UpdateAuthorParam {
         return UpdateAuthorParam(AuthorName(name), AuthorKana(kana))
     }

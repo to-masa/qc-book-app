@@ -14,6 +14,10 @@ data class UpdateBookRequest(
     @RequestParam
     val authorId: Long,
 ) {
+
+    /**
+     * パラメータに変換する
+     */
     fun toParam(): UpdateBookParam {
         return UpdateBookParam(BookTitle(title), AuthorId(authorId))
     }

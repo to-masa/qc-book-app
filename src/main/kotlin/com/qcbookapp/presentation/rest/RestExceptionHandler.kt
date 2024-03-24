@@ -12,9 +12,15 @@ import org.springframework.web.context.request.WebRequest
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler
 import java.lang.Exception
 
+/**
+ * REST-APIの例外ハンドリングクラス
+ */
 @RestControllerAdvice
 class RestExceptionHandler : ResponseEntityExceptionHandler() {
 
+    /**
+     * 例外のハンドリングをする
+     */
     @ExceptionHandler(Exception::class)
     fun handling(
         exceptionHandler: Exception,
@@ -42,6 +48,9 @@ class RestExceptionHandler : ResponseEntityExceptionHandler() {
         return ResponseEntity<ErrorResponseBody>(body, httpStatus)
     }
 
+    /**
+     * DomainException のハンドリング
+     */
     private fun handleDomainException(
         exception: Exception,
     ): ResponseEntity<ErrorResponseBody> {

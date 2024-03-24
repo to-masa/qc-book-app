@@ -12,6 +12,10 @@ class BookResponse(
 ) {
 
     companion object {
+
+        /**
+         * DTOからレスポンスに変換する
+         */
         fun fromDto(dto: BookDto): BookResponse {
             dto.run {
                 return BookResponse(

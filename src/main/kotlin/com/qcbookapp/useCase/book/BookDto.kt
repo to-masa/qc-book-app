@@ -14,6 +14,10 @@ class BookDto(
     val updatedAt: LocalDateTime,
 ) {
     companion object {
+
+        /**
+         * ドメインオブジェクトからDTOへの変換
+         */
         fun fromDomain(book: Book): BookDto {
             return BookDto(
                 id = book.identifier.value,
